@@ -56,7 +56,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */     
-
+#include "dac.h"
+#include "tim.h"
+#include "math.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -184,6 +186,14 @@ void StartDefaultTask(void const * argument)
   MX_USB_HOST_Init();
 
   /* USER CODE BEGIN StartDefaultTask */
+  HAL_TIM_Base_Start(&htim7);
+
+  uint16_t sinus[64];
+  for (int i = 0; i < 64; ++i) {
+	sinus[i] = (sin((i / 64.0) * M_PI * 2) + 1) * (4095.0 / 2);
+  }
+  HAL_DAC_Start_DMA(&hdac,DAC_CHANNEL_2,sinus,64, DAC_ALIGN_12B_R);
+
   /* Infinite loop */
   for(;;)
   {
