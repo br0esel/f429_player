@@ -194,22 +194,6 @@ void StartDefaultTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-	  while(Appli_state != APPLICATION_READY){
-		  osDelay(1);
-	  }
-	  if(f_mount(&USBHFatFS,"",1) == FR_OK){
-		  HAL_GPIO_WritePin(LD_GREEN_GPIO_Port,LD_GREEN_Pin,GPIO_PIN_SET);
-		  if(f_open(&USBHFile,"ReadMe.txt", FA_READ) == FR_OK){
-			  printf("sdfgsdfgsdgfgsdf\n");
-		  }
-	  }
-	  else{
-		  HAL_GPIO_WritePin(LD_GREEN_GPIO_Port,LD_RED_Pin,GPIO_PIN_SET);
-	  }
-	  while(Appli_state != APPLICATION_DISCONNECT){
-	  		  osDelay(1);
-	  }
-	  HAL_GPIO_WritePin(LD_GREEN_GPIO_Port,LD_GREEN_Pin,GPIO_PIN_RESET);
     osDelay(1);
   }
   /* USER CODE END StartDefaultTask */
