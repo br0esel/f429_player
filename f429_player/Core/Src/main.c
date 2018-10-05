@@ -54,6 +54,7 @@
 #include "dac.h"
 #include "dma.h"
 #include "dma2d.h"
+#include "fatfs.h"
 #include "i2c.h"
 #include "ltdc.h"
 #include "spi.h"
