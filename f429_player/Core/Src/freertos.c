@@ -58,6 +58,7 @@
 /* USER CODE BEGIN Includes */     
 #include "Default.h"
 #include "Test.h"
+#include "App.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -161,7 +162,7 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 4096);
+  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 8192);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
@@ -190,7 +191,7 @@ void StartDefaultTask(void const * argument)
 
   /* USER CODE BEGIN StartDefaultTask */
   //StartMp3();
-  Start();
+  StartApp();
   /* Infinite loop */
   for(;;)
   {
